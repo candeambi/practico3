@@ -3,6 +3,7 @@ import './App.css';
 import React, {useState} from 'react';
 import Nombre from './componentes/Nombre.js';
 
+
 function App() {
 
   const [nombre, setNombre] = useState('');
@@ -10,6 +11,9 @@ function App() {
   const ChangeNameApp = (nuevoNombre) => {
     setNombre(nuevoNombre);
   };
+
+  // Controlador de eventos para iniciar el juego
+  const [gameStarted, setGameStarted] = useState(false);
 
   return (
     
@@ -20,8 +24,18 @@ function App() {
       
       <Nombre nombre={nombre} ChangeName={ChangeNameApp}/>
 
-      <button type="submit" id="btnComenzar">Comenzar juego</button>
-
+  {/* Botón para iniciar el juego */}
+  {!gameStarted ? (
+      <button type="submit" id="btnComenzar" onClick={() => setGameStarted(true)}>Comenzar juego</button>
+      ) : (
+        // Mostrar botones de juego cuando gameStarted es true
+        <div>
+          <button>Piedra</button>
+          <button>Papel</button>
+          <button>Tijera</button>
+        </div>
+      )}
+      
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Hola mundo!
