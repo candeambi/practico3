@@ -2,6 +2,9 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
 import Nombre from './componentes/Nombre.js';
+import piedraImg from './img/piedra.jpg';
+import papelImg from './img/papel.jpg';
+import tijeraImg from './img/tijera.jpg';
 
 
 function App() {
@@ -30,16 +33,14 @@ function App() {
       ) : (
         // Mostrar botones de juego cuando gameStarted es true
         <div>
-          <button>Piedra</button>
-          <button>Papel</button>
-          <button>Tijera</button>
+          <button><img src={piedraImg} alt="piedra" /></button>
+          <button><img src={papelImg} alt="papel" /></button>
+          <button><img src={tijeraImg} alt="tijera" /></button>
         </div>
       )}
       
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hola mundo!
-        </p>
+
       </header>
     </div>
   );
