@@ -2,8 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
 import Nombre from './componentes/Nombre.js';
-import Juego from './componentes/Juego.js';
 import InterfazUsuario from './componentes/InterfazUsuario.js';
+import Marcador from './componentes/Marcador.js';
 
 
 function App() {
@@ -17,20 +17,60 @@ function App() {
   //Controlador de eventos para iniciar el juego
   const [gameStarted, setGameStarted] = useState(false);
 
+  const opciones = ['Piedra', 'Papel', 'Tijera'];
+  const [opcionUsuario, setOpcionUsuario] = useState(null);
+  const [opcionComputadora, setOpcionComputadora] = useState(null);
+  const [resultado, setResultado] = useState(null);
+  const rondaMaxima = 5;
+  const [ronda, setRonda] = useState(1);
+  const [puntosUsuario, setPuntosUsuario] = useState(0);
+  const [puntosComputadora, setPuntosComputadora] = useState(0);
+
   const obtenerOpcionClick = (opcion) => {
     // Aquí puedes manejar la elección del jugador
+    if (ronda <= rondaMaxima){
     console.log(`El jugador eligió: ${opcion}`);
-    // Luego, puedes generar aleatoriamente la elección del oponente y determinar el resultado del juego
+    setOpcionUsuario(opcion);
+    const eleccionAleatoria = opciones[Math.floor(Math.random() * 3)];
+    setOpcionComputadora(eleccionAleatoria);
+    setResultado(obtenerResultado(opcionUsuario, opcionComputadora));
+
+    if (resultado === 'Usuario'){
+      setPuntosUsuario(puntosUsuario + 1);
+    } else if (resultado === 'Computadora') {
+      setPuntosComputadora(puntosComputadora + 1);
+    }
+    }
+
+    if (ronda >= rondaMaxima){
+      console.log('final');
+    }
   };
 
-  // Controlador de eventos para iniciar el juego
-  // const [playerChoice, setPlayerChoice] = useState(null);
 
-  //const handlePlayerChoice = (choice, opponentChoice) => {
-    // Maneja la elección del jugador aquí
-    //setPlayerChoice(choice);
-
-
+    const obtenerResultado = (opcionUsuario, opcionComputadora) =>{
+      if (opcionUsuario === opcionComputadora){
+        console.log("empate");
+        return 'Empate';
+      } else if (
+      (opcionComputadora === "Piedra" && opcionUsuario === "Tijeras") ||
+      (opcionComputadora === "Papel" && opcionUsuario === "Piedra") ||
+      (opcionComputadora === "Tijeras" && opcionUsuario === "Papel")
+      ){
+          console.log("computadora");
+          setRonda(ronda +1);
+          return 'Computadora';
+      } else if (
+      (opcionUsuario === "Piedra" && opcionComputadora === "Tijeras") ||
+      (opcionUsuario === "Papel" && opcionComputadora === "Piedra") ||
+      (opcionUsuario === "Tijeras" && opcionComputadora === "Papel")
+      ){
+          console.log("usuario");
+          setRonda(ronda +1);
+          return 'Usuario';
+      }
+      };
+  
 
   return (
     
@@ -50,6 +90,10 @@ function App() {
         // Mostrar botones de juego cuando gameStarted es true
         <div>
           <InterfazUsuario opcionClick={obtenerOpcionClick}/>
+          <p>Elegiste: {opcionUsuario}</p>
+          <p>La computadora eligió: {opcionComputadora}</p>
+          <p>Reultado de la ronda: {resultado}</p>
+          <Marcador />
         </div>
       )}
        
