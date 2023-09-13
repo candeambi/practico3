@@ -2,9 +2,8 @@ import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
 import Nombre from './componentes/Nombre.js';
-import piedraImg from './img/piedra.jpg';
-import papelImg from './img/papel.jpg';
-import tijeraImg from './img/tijera.jpg';
+import Juego from './componentes/Juego.js';
+import InterfazUsuario from './componentes/InterfazUsuario.js';
 
 
 function App() {
@@ -15,8 +14,23 @@ function App() {
     setNombre(nuevoNombre);
   };
 
-  // Controlador de eventos para iniciar el juego
+  //Controlador de eventos para iniciar el juego
   const [gameStarted, setGameStarted] = useState(false);
+
+  const obtenerOpcionClick = (opcion) => {
+    // Aquí puedes manejar la elección del jugador
+    console.log(`El jugador eligió: ${opcion}`);
+    // Luego, puedes generar aleatoriamente la elección del oponente y determinar el resultado del juego
+  };
+
+  // Controlador de eventos para iniciar el juego
+  // const [playerChoice, setPlayerChoice] = useState(null);
+
+  //const handlePlayerChoice = (choice, opponentChoice) => {
+    // Maneja la elección del jugador aquí
+    //setPlayerChoice(choice);
+
+
 
   return (
     
@@ -27,18 +41,18 @@ function App() {
       
       <Nombre nombre={nombre} ChangeName={ChangeNameApp}/>
 
+
+
   {/* Botón para iniciar el juego */}
   {!gameStarted ? (
       <button type="submit" id="btnComenzar" onClick={() => setGameStarted(true)}>Comenzar juego</button>
       ) : (
         // Mostrar botones de juego cuando gameStarted es true
         <div>
-          <button><img src={piedraImg} alt="piedra" /></button>
-          <button><img src={papelImg} alt="papel" /></button>
-          <button><img src={tijeraImg} alt="tijera" /></button>
+          <InterfazUsuario opcionClick={obtenerOpcionClick}/>
         </div>
       )}
-      
+       
         <img src={logo} className="App-logo" alt="logo" />
 
       </header>
