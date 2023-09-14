@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Nombre from './componentes/Nombre.js';
 import InterfazUsuario from './componentes/InterfazUsuario.js';
 import Marcador from './componentes/Marcador.js';
@@ -32,12 +32,15 @@ function App() {
     console.log(`El jugador eligió: ${opcion}`);
     setOpcionUsuario(opcion);
     const eleccionAleatoria = opciones[Math.floor(Math.random() * 3)];
+    console.log(`La computadora eligió: ${eleccionAleatoria}`);
     setOpcionComputadora(eleccionAleatoria);
-    setResultado(obtenerResultado(opcionUsuario, opcionComputadora));
+ 
+    const resultadoRonda = obtenerResultado(opcion, eleccionAleatoria);
+    setResultado(resultadoRonda);
 
-    if (resultado === 'Usuario'){
+    if (resultadoRonda === 'Usuario'){
       setPuntosUsuario(puntosUsuario + 1);
-    } else if (resultado === 'Computadora') {
+    } else if (resultadoRonda === 'Computadora') {
       setPuntosComputadora(puntosComputadora + 1);
     }
     }
@@ -49,6 +52,10 @@ function App() {
 
 
     const obtenerResultado = (opcionUsuario, opcionComputadora) =>{
+      opcionUsuario = opcionUsuario.toLowerCase();
+      opcionComputadora = opcionComputadora.toLowerCase();
+
+  
       if (opcionUsuario === opcionComputadora){
         console.log("empate");
         return 'Empate';
@@ -69,9 +76,18 @@ function App() {
           setRonda(ronda +1);
           return 'Usuario';
       }
+      
+     
+      //setResultado(obtenerResultado(opcionUsuario, opcionComputadora));
+      console.log(`Resultado de la ronda: ${resultado}`);
+
       };
   
-
+      useEffect(() => {
+    // Esto se ejecuta cada vez que resultado se actualiza
+    console.log(`Resultado de la ronda: ${resultado}`);
+  }, [resultado]); 
+  
   return (
     
     <div className="App">
@@ -92,7 +108,9 @@ function App() {
           <InterfazUsuario opcionClick={obtenerOpcionClick}/>
           <p>Elegiste: {opcionUsuario}</p>
           <p>La computadora eligió: {opcionComputadora}</p>
-          <p>Reultado de la ronda: {resultado}</p>
+          {resultado !== null && (
+          <p>Resultado de la ronda: {resultado}</p>
+          )}
           <Marcador />
         </div>
       )}

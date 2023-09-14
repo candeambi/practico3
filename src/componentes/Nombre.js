@@ -11,14 +11,14 @@ function Nombre(props){
 
     return(
         <div>
-            <h3>¡Bienvenidx! Por favor, ingresa tu nombre:</h3>
+            <h4>¡Bienvenidx {nombre || 'jugador'}!</h4>
+            <h5>Por favor, ingresa tu nombre:</h5>
             <input
              type="text"
              placeholder="Ingresa tu nombre"
              value={nombre}
              onChange={ChangeNombre}
              />
-            <p>Hola, {nombre || 'jugador'}.</p>
         </div>
     );
 }
