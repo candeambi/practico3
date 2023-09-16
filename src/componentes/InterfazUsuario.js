@@ -50,7 +50,7 @@ function InterfazUsuario() {
   console.log(`La computadora eligió: ${eleccionAleatoria}`);
 
   //Realizo la funcion que determina el ganador
-  determinarGanador(opcionUsuario, opcionComputadora);
+  determinarGanador(opcion, eleccionAleatoria);
   };
   
 
