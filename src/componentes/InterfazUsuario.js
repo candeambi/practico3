@@ -9,6 +9,7 @@ function InterfazUsuario() {
   const [opcionUsuario, setOpcionUsuario] = useState(null);
   const [opcionComputadora, setOpcionComputadora] = useState(null);
   const [resultado, setResultado] = useState(null);
+  const [ronda, setRonda] = useState(0);
 
   // Declaro la funcion determinarGanador
   function determinarGanador(opcionUsuario, opcionComputadora){
@@ -23,6 +24,7 @@ function InterfazUsuario() {
     ){
       console.log('Gana el usuario');
       setResultado('Gana el usuario');
+      setRonda(ronda + 1);
     }
     else if (
       (opcionComputadora === 'Piedra' && opcionUsuario === 'Tijera') ||
@@ -31,6 +33,7 @@ function InterfazUsuario() {
     ){
       console.log('Gana la computadora');
       setResultado('Gana la computadora');
+      setRonda(ronda +1);
     };
   }
 
@@ -51,9 +54,7 @@ function InterfazUsuario() {
 
   //Realizo la funcion que determina el ganador
   determinarGanador(opcion, eleccionAleatoria);
-  };
-  
-
+  }
 
 
     return (
@@ -77,6 +78,7 @@ function InterfazUsuario() {
         <p>Elegiste: {opcionUsuario}</p>
         <p>La computadora eligió: {opcionComputadora}</p>
         <p>Resultado de la ronda: {resultado}</p>
+        <p>Ronda: {ronda}</p>
         </div>
       </div>
       </div>
