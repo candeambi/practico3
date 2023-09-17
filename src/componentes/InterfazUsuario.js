@@ -26,11 +26,7 @@ function InterfazUsuario() {
       setResultado('Gana el usuario');
       setRonda(ronda + 1);
     }
-    else if (
-      (opcionComputadora === 'Piedra' && opcionUsuario === 'Tijera') ||
-      (opcionComputadora === 'Papel' && opcionUsuario === 'Piedra') ||
-      (opcionComputadora === 'Tijera' && opcionUsuario === 'Papel')
-    ){
+    else {
       console.log('Gana la computadora');
       setResultado('Gana la computadora');
       setRonda(ronda +1);
@@ -49,7 +45,7 @@ function InterfazUsuario() {
   let eleccionAleatoria = opciones[Math.floor(Math.random() * 3)];
   if (eleccionAleatoria === 'Piedra') setOpcionComputadora('Piedra');
   if (eleccionAleatoria === 'Papel') setOpcionComputadora('Papel');
-  if (eleccionAleatoria === 'Tijeras') setOpcionComputadora('Tijera');
+  if (eleccionAleatoria === 'Tijera') setOpcionComputadora('Tijera');
   console.log(`La computadora eligió: ${eleccionAleatoria}`);
 
   //Realizo la funcion que determina el ganador
