@@ -10,6 +10,9 @@ function InterfazUsuario() {
   const [opcionComputadora, setOpcionComputadora] = useState(null);
   const [resultado, setResultado] = useState(null);
   const [ronda, setRonda] = useState(0);
+  const rondaMaxima = 5;
+  const [botonDesactivado, setBotonDesactivado] = useState(false);
+  
 
   // Declaro la funcion determinarGanador
   function determinarGanador(opcionUsuario, opcionComputadora){
@@ -35,6 +38,7 @@ function InterfazUsuario() {
 
   //Guardo la opcion seleccionada por el jugador
   const opcionClick = (opcion) => {
+    if (ronda < rondaMaxima){
   if (opcion === 'Piedra') setOpcionUsuario('Piedra');
   if (opcion === 'Papel') setOpcionUsuario('Papel');
   if (opcion === 'Tijera') setOpcionUsuario('Tijera');
@@ -50,8 +54,10 @@ function InterfazUsuario() {
 
   //Realizo la funcion que determina el ganador
   determinarGanador(opcion, eleccionAleatoria);
+  } else if (ronda >= rondaMaxima){
+    setBotonDesactivado(true);
+  };
   }
-
 
     return (
       <div className="usuario-interfaz">
@@ -60,13 +66,13 @@ function InterfazUsuario() {
           {/* Aquí van los botones de elección del jugador */}
           <div>
           <h2>¡A jugar!</h2>
-          <button onClick={() => opcionClick('Piedra')}>
+          <button onClick={() => opcionClick('Piedra')} disabled={botonDesactivado}>
             <img src={piedraImg} alt="piedra" />
             </button>
-          <button onClick={() => opcionClick('Papel')}>
+          <button onClick={() => opcionClick('Papel')} disabled={botonDesactivado}> 
             <img src={papelImg} alt="papel" />
             </button>
-          <button onClick={() => opcionClick('Tijera')}>
+          <button onClick={() => opcionClick('Tijera')} disabled={botonDesactivado}>
             <img src={tijeraImg} alt="tijera" />
             </button>
         </div>
