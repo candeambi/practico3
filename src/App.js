@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Nombre from './componentes/Nombre.js';
 import InterfazUsuario from './componentes/InterfazUsuario.js';
 import Marcador from './componentes/Marcador.js';
@@ -16,6 +16,15 @@ function App() {
 
   //Controlador de eventos para iniciar el juego
   const [gameStarted, setGameStarted] = useState(false);
+
+  const [marcador, setMarcador] = useState({ usuario: 0, computadora: 0 });
+  const actualizarMarcador = (ganador) => {
+    if (ganador === 'usuario') {
+      setMarcador({ ...marcador, usuario: marcador.usuario + 1 });
+    } else if (ganador === 'computadora') {
+      setMarcador({ ...marcador, computadora: marcador.computadora + 1 });
+    }
+  };
 
   return (
     
@@ -34,8 +43,8 @@ function App() {
       ) : (
         // Mostrar botones de juego cuando gameStarted es true
         <div>
-          <InterfazUsuario />
-          <Marcador />
+          <InterfazUsuario actualizarMarcador={actualizarMarcador}/>
+          <Marcador marcador={marcador} />
         </div>
       )}
        

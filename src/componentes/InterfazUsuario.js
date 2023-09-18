@@ -3,7 +3,7 @@ import piedraImg from '../img/piedra.jpg';
 import papelImg from '../img/papel.jpg';
 import tijeraImg from '../img/tijera.jpg';
 
-function InterfazUsuario() {
+function InterfazUsuario({actualizarMarcador}) {
 
 
   const [opcionUsuario, setOpcionUsuario] = useState(null);
@@ -16,6 +16,7 @@ function InterfazUsuario() {
 
   // Declaro la funcion determinarGanador
   function determinarGanador(opcionUsuario, opcionComputadora){
+
     if (opcionUsuario === opcionComputadora){
       console.log('Empate');
       setResultado('Empate');
@@ -28,12 +29,15 @@ function InterfazUsuario() {
       console.log('Gana el usuario');
       setResultado('Gana el usuario');
       setRonda(ronda + 1);
+      actualizarMarcador('usuario');
     }
     else {
       console.log('Gana la computadora');
       setResultado('Gana la computadora');
       setRonda(ronda +1);
+      actualizarMarcador('computadora');
     };
+
   }
 
   //Guardo la opcion seleccionada por el jugador
@@ -54,10 +58,15 @@ function InterfazUsuario() {
 
   //Realizo la funcion que determina el ganador
   determinarGanador(opcion, eleccionAleatoria);
-  } else if (ronda >= rondaMaxima){
-    setBotonDesactivado(true);
-  };
-  }
+
+  
+
+} else if (ronda >= rondaMaxima){
+  setBotonDesactivado(true);
+};
+}
+
+  
 
     return (
       <div className="usuario-interfaz">
