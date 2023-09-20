@@ -8,6 +8,7 @@ import Marcador from './componentes/Marcador.js';
 
 function App() {
 
+  //Validación del nombre para comenzar a jugar.
   const [nombre, setNombre] = useState('');
   const [nombreValido, setNombreValido] = useState(false); 
 
@@ -20,6 +21,7 @@ function App() {
   //Controlador de eventos para iniciar el juego
   const [gameStarted, setGameStarted] = useState(false);
 
+  //Manejo del marcador
   const [marcador, setMarcador] = useState({ usuario: 0, computadora: 0 });
   const actualizarMarcador = (ganador) => {
     if (ganador === 'usuario') {
@@ -46,8 +48,8 @@ function App() {
       ) : (
         // Mostrar botones de juego cuando gameStarted es true
         <div>
-          <InterfazUsuario actualizarMarcador={actualizarMarcador} nombre={nombre} />
           <Marcador marcador={marcador} />
+          <InterfazUsuario actualizarMarcador={actualizarMarcador} nombre={nombre} />
         </div>
       )}
        

@@ -5,7 +5,6 @@ import tijeraImg from '../img/tijera.jpg';
 
 function InterfazUsuario({actualizarMarcador, nombre}) {
 
-
   const [opcionUsuario, setOpcionUsuario] = useState("");
   const [opcionComputadora, setOpcionComputadora] = useState("");
   const [resultado, setResultado] = useState("");
@@ -15,8 +14,6 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
   const [puntosUsuario, setPuntosUsuario] = useState(0);
   const [puntosComputadora, setPuntosComputadora] = useState(0);
   const [juegoTerminado, setJuegoTerminado] = useState(false);
-
-  
 
   // Declaro la funcion determinarGanador
   function determinarGanador(opcionUsuario, opcionComputadora){
@@ -66,6 +63,7 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
     }
   };
 
+  // Finaliza el juego cuando usuario o computadora llegan a 3 rondas ganadas.
   useEffect(() => {
     if (puntosUsuario >= 3 || puntosComputadora >= 3) {
       setJuegoActivo(false);
@@ -79,6 +77,7 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
     }
   }, [puntosUsuario, puntosComputadora, nombre]);
 
+  // Función que utiliza el botón "Reiniciar juego"
   const reiniciarJuego = () => {
     setPuntosUsuario(0);
     setPuntosComputadora(0);
@@ -91,8 +90,6 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
     setJuegoTerminado(false);
     actualizarMarcador('');
   };
-  
-  
 
     return (
       <div className="usuario-interfaz">
@@ -113,12 +110,14 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
             </button>
         </div>
         <div>
+          {/* Devuelve la elección de cada jugador y el resultado de la ronda */}
         <h2>{ganadorFinal}</h2>
         <p>Elegiste: {opcionUsuario}</p>
         <p>La computadora eligió: {opcionComputadora}</p>
         <p>Resultado de la ronda: {resultado}</p>
         </div>
         <div>
+          {/* Botón para reiniciar el marcador y los estados */}
         <button onClick={reiniciarJuego} disabled={!juegoTerminado}>
           Reiniciar Juego
         </button>

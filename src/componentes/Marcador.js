@@ -1,6 +1,6 @@
 import React from 'react';
 
-
+// Marcador del juego
 function Marcador ({ marcador }) {
     return (
       <div>

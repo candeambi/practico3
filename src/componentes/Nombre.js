@@ -1,5 +1,6 @@
 import React from "react";
 
+//Obtención del nombre a través del input
 function Nombre(props){
     const { nombre, ChangeName } = props;
 
