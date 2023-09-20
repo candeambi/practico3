@@ -9,9 +9,12 @@ import Marcador from './componentes/Marcador.js';
 function App() {
 
   const [nombre, setNombre] = useState('');
+  const [nombreValido, setNombreValido] = useState(false); 
 
   const ChangeNameApp = (nuevoNombre) => {
+    const esNombreValido = /^[A-Z]+$/i.test(nuevoNombre);
     setNombre(nuevoNombre);
+    setNombreValido(esNombreValido);
   };
 
   //Controlador de eventos para iniciar el juego
@@ -35,11 +38,9 @@ function App() {
       
       <Nombre nombre={nombre} ChangeName={ChangeNameApp}/>
 
-
-
   {/* Botón para iniciar el juego */}
   {!gameStarted ? (
-      <button type="submit" id="btnComenzar" onClick={() => setGameStarted(true)}>Comenzar juego</button>
+      <button type="submit" id="btnComenzar" onClick={() => setGameStarted(true)} disabled={!nombreValido}>Comenzar juego</button>
       ) : (
         // Mostrar botones de juego cuando gameStarted es true
         <div>

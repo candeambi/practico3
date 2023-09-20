@@ -1,7 +1,5 @@
 import React from "react";
 
-
-
 function Nombre(props){
     const { nombre, ChangeName } = props;
 
@@ -19,6 +17,7 @@ function Nombre(props){
              value={nombre}
              onChange={ChangeNombre}
              />
+             <p>*Campo obligatorio: solo se aceptan letras y espacios.</p>
         </div>
     );
 }

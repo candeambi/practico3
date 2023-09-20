@@ -6,9 +6,9 @@ import tijeraImg from '../img/tijera.jpg';
 function InterfazUsuario({actualizarMarcador}) {
 
 
-  const [opcionUsuario, setOpcionUsuario] = useState(null);
-  const [opcionComputadora, setOpcionComputadora] = useState(null);
-  const [resultado, setResultado] = useState(null);
+  const [opcionUsuario, setOpcionUsuario] = useState("");
+  const [opcionComputadora, setOpcionComputadora] = useState("");
+  const [resultado, setResultado] = useState("");
   const [ronda, setRonda] = useState(0);
   const rondaMaxima = 5;
   const [botonDesactivado, setBotonDesactivado] = useState(false);
