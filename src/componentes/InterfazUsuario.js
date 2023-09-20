@@ -9,12 +9,13 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
   const [opcionUsuario, setOpcionUsuario] = useState("");
   const [opcionComputadora, setOpcionComputadora] = useState("");
   const [resultado, setResultado] = useState("");
-  const [ronda, setRonda] = useState(1);
   const [botonDesactivado, setBotonDesactivado] = useState(false);
   const [juegoActivo, setJuegoActivo] = useState(true);
   const [ganadorFinal, setGanadorFinal] = useState('');
   const [puntosUsuario, setPuntosUsuario] = useState(0);
   const [puntosComputadora, setPuntosComputadora] = useState(0);
+  const [juegoTerminado, setJuegoTerminado] = useState(false);
+
   
 
   // Declaro la funcion determinarGanador
@@ -31,14 +32,12 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
     ){
       console.log('Gana el usuario');
       setResultado('Gana '+ nombre);
-      setRonda(ronda + 1);
       actualizarMarcador('usuario');
       setPuntosUsuario(puntosUsuario + 1);
     }
     else {
       console.log('Gana la computadora');
       setResultado('Gana la computadora');
-      setRonda(ronda +1);
       actualizarMarcador('computadora');
       setPuntosComputadora(puntosComputadora + 1);
     };
@@ -61,6 +60,7 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
       if (eleccionAleatoria === 'Tijera') setOpcionComputadora('Tijera');
       console.log(`La computadora eligió: ${eleccionAleatoria}`);
 
+
       //Realizo la funcion que determina el ganador
       determinarGanador(opcion, eleccionAleatoria);
     }
@@ -70,6 +70,7 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
     if (puntosUsuario >= 3 || puntosComputadora >= 3) {
       setJuegoActivo(false);
       setBotonDesactivado(true);
+      setJuegoTerminado(true);
       if (puntosUsuario >= 3) {
         setGanadorFinal(`¡${nombre} ganaste!`);
       } else {
@@ -77,6 +78,20 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
       }
     }
   }, [puntosUsuario, puntosComputadora, nombre]);
+
+  const reiniciarJuego = () => {
+    setPuntosUsuario(0);
+    setPuntosComputadora(0);
+    setResultado('');
+    setOpcionUsuario('');
+    setOpcionComputadora('');
+    setGanadorFinal('');
+    setBotonDesactivado(false);
+    setJuegoActivo(true);
+    setJuegoTerminado(false);
+    actualizarMarcador('');
+  };
+  
   
 
     return (
@@ -102,7 +117,11 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
         <p>Elegiste: {opcionUsuario}</p>
         <p>La computadora eligió: {opcionComputadora}</p>
         <p>Resultado de la ronda: {resultado}</p>
-        <p>Ronda: {ronda}</p>
+        </div>
+        <div>
+        <button onClick={reiniciarJuego} disabled={!juegoTerminado}>
+          Reiniciar Juego
+        </button>
         </div>
       </div>
       </div>

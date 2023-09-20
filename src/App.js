@@ -26,6 +26,8 @@ function App() {
       setMarcador({ ...marcador, usuario: marcador.usuario + 1 });
     } else if (ganador === 'computadora') {
       setMarcador({ ...marcador, computadora: marcador.computadora + 1 });
+    } else {
+      setMarcador({ usuario: 0, computadora: 0 });
     }
   };
 
