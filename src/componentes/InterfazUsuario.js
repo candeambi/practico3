@@ -3,7 +3,7 @@ import piedraImg from '../img/piedra.jpg';
 import papelImg from '../img/papel.jpg';
 import tijeraImg from '../img/tijera.jpg';
 
-function InterfazUsuario({actualizarMarcador}) {
+function InterfazUsuario({actualizarMarcador, nombre}) {
 
 
   const [opcionUsuario, setOpcionUsuario] = useState("");
@@ -27,7 +27,7 @@ function InterfazUsuario({actualizarMarcador}) {
       (opcionUsuario === 'Tijera' && opcionComputadora === 'Papel')
     ){
       console.log('Gana el usuario');
-      setResultado('Gana el usuario');
+      setResultado('Gana '+ nombre);
       setRonda(ronda + 1);
       actualizarMarcador('usuario');
     }
@@ -74,6 +74,7 @@ function InterfazUsuario({actualizarMarcador}) {
         <div className="opciones">
           {/* Aquí van los botones de elección del jugador */}
           <div>
+            <p>El mejor de 5 rondas gana.</p>
           <h2>¡A jugar!</h2>
           <button onClick={() => opcionClick('Piedra')} disabled={botonDesactivado}>
             <img src={piedraImg} alt="piedra" />

@@ -44,7 +44,7 @@ function App() {
       ) : (
         // Mostrar botones de juego cuando gameStarted es true
         <div>
-          <InterfazUsuario actualizarMarcador={actualizarMarcador}/>
+          <InterfazUsuario actualizarMarcador={actualizarMarcador} nombre={nombre} />
           <Marcador marcador={marcador} />
         </div>
       )}
