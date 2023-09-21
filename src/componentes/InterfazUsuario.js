@@ -4,6 +4,52 @@ import papelImg from '../img/papel.jpg';
 import tijeraImg from '../img/tijera.jpg';
 import perdedor from '../img/perdedor.gif';
 import ganador from '../img/ganador.gif';
+import styled, {css} from 'styled-components';
+
+const Contenedor = styled.div`
+  text-align: center;
+  color: #000;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  background-color: rgb(240, 205, 8);
+  padding:10px;
+  border-radius: 5px;
+  margin: 10px;
+`
+const Boton = styled.button`
+  border-radius: 5px;
+  cursor: pointer;
+
+   /* Estilos para el estado normal */
+  ${props =>
+    !props.disabled &&
+    css`
+      background-color: rgb(196, 167, 7);
+      color: #fff;
+
+&:hover{
+  box-shadow: 0px 0px 15px 15px rgb(107, 95, 1);
+  -webkit-box-shadow: 0px 0px 15px 15px rgb(107, 95, 1);
+  -webkit-transform: rotate(360deg);transform: rotate(360deg);
+  transition-duration: 1.5s;
+}
+    `}
+
+  /* Estilos para el estado deshabilitado */
+  ${props =>
+    props.disabled &&
+    css`
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+      filter: grayscale(90%);
+
+      /* Puedes agregar otros estilos específicos para deshabilitado aquí */
+    `}
+`;
+
+const Gif = styled.img`
+border-radius: 5px;
+`
 
 function InterfazUsuario({actualizarMarcador, nombre}) {
 
@@ -73,12 +119,12 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
       setJuegoTerminado(true);
       if (puntosUsuario >= 3) {
         setGanadorFinal(<>
-          <img src={ganador} alt="Ganador" />
+          <Gif src={ganador} alt="Ganador" />
           <p>{`¡${nombre} ganaste!`}</p>
         </>);
       } else {
         setGanadorFinal(<>
-          <img src={perdedor} alt="Perdedor" />
+          <Gif src={perdedor} alt="Perdedor" height={200} width={300} />
           <p>¡Te ganó la computadora!</p>
         </>);
       }
@@ -100,22 +146,22 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
   };
 
     return (
-      <div className="usuario-interfaz">
+      <Contenedor className="usuario-interfaz">
         <h2>Elige tu opción:</h2>
         <div className="opciones">
           {/* Aquí van los botones de elección del jugador */}
           <div>
             <p>Quien gane 3 rondas, gana la partida.</p>
           <h2>¡A jugar!</h2>
-          <button onClick={() => opcionClick('Piedra')} disabled={botonDesactivado}>
-            <img src={piedraImg} alt="piedra" />
-            </button>
-          <button onClick={() => opcionClick('Papel')} disabled={botonDesactivado}> 
-            <img src={papelImg} alt="papel" />
-            </button>
-          <button onClick={() => opcionClick('Tijera')} disabled={botonDesactivado}>
-            <img src={tijeraImg} alt="tijera" />
-            </button>
+          <Boton onClick={() => opcionClick('Piedra')} disabled={botonDesactivado}>
+            <img src={piedraImg} alt="piedra" height='150' width='150'/>
+            </Boton>
+          <Boton onClick={() => opcionClick('Papel')} disabled={botonDesactivado}> 
+            <img src={papelImg} alt="papel" height='150' width='150'/>
+            </Boton>
+          <Boton onClick={() => opcionClick('Tijera')} disabled={botonDesactivado}>
+            <img src={tijeraImg} alt="tijera" height='150' width='150'/>
+            </Boton>
         </div>
         <div>
           {/* Devuelve la elección de cada jugador y el resultado de la ronda */}
@@ -131,7 +177,7 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
         </button>
         </div>
       </div>
-      </div>
+      </Contenedor>
     );
   }
 

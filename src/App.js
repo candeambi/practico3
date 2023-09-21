@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react';
 import Nombre from './componentes/Nombre.js';
@@ -44,7 +43,8 @@ function App() {
 
   {/* Botón para iniciar el juego */}
   {!gameStarted ? (
-      <button type="submit" id="btnComenzar" onClick={() => setGameStarted(true)} disabled={!nombreValido}>Comenzar juego</button>
+      <button type="submit" 
+      onClick={() => setGameStarted(true)} disabled={!nombreValido}>Comenzar juego</button>
       ) : (
         // Mostrar botones de juego cuando gameStarted es true
         <div>
@@ -52,9 +52,6 @@ function App() {
           <InterfazUsuario actualizarMarcador={actualizarMarcador} nombre={nombre} />
         </div>
       )}
-       
-        <img src={logo} className="App-logo" alt="logo" />
-
       </header>
     </div>
   );

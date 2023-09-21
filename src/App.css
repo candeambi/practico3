@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-image: url(../src/img/fondo.jpg);
 }
 
 .App-logo {
@@ -14,7 +15,6 @@
 }
 
 .App-header {
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -35,4 +35,41 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+h1{
+  display:flex;
+  justify-content: center;
+  color: #000;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 280%;
+  text-transform: uppercase;
+  background-color: rgb(240, 205, 8);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+button:disabled{
+  border-radius: 5px;
+  cursor: not-allowed;
+  margin: 5px;
+  padding: 10px;
+  background-color: #a7a3a3;
+  border-color: #504d4d;
+  color: #504d4d;
+}
+
+
+button{
+  border-radius: 5px;
+  cursor:pointer;
+  margin: 5px;
+  padding: 10px;
+  background-color:rgb(196, 167, 7);
+  border-color:rgb(107, 95, 1);
+}
+
+button:hover{
+  box-shadow: 0 4px 16px rgb(196, 167, 7);
+  transition: all 0.2s ease;
 }
