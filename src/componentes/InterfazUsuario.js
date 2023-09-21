@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import piedraImg from '../img/piedra.jpg';
 import papelImg from '../img/papel.jpg';
 import tijeraImg from '../img/tijera.jpg';
+import perdedor from '../img/perdedor.gif';
+import ganador from '../img/ganador.gif';
 
 function InterfazUsuario({actualizarMarcador, nombre}) {
 
@@ -70,9 +72,15 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
       setBotonDesactivado(true);
       setJuegoTerminado(true);
       if (puntosUsuario >= 3) {
-        setGanadorFinal(`¡${nombre} ganaste!`);
+        setGanadorFinal(<>
+          <img src={ganador} alt="Ganador" />
+          <p>{`¡${nombre} ganaste!`}</p>
+        </>);
       } else {
-        setGanadorFinal('Ganó la computadora');
+        setGanadorFinal(<>
+          <img src={perdedor} alt="Perdedor" />
+          <p>¡Te ganó la computadora!</p>
+        </>);
       }
     }
   }, [puntosUsuario, puntosComputadora, nombre]);
