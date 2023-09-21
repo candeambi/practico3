@@ -6,19 +6,22 @@ const Contenedor = styled.div`
   color: #000;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   background-color: rgb(240, 205, 8);
-  padding: 5px 10px 5px 10px;
+  padding: 5px;
   border-radius: 5px;
   margin: 10px;
 `;
 
+const Partidas = styled.p`
+  font-size: large;
+`;
 
 // Marcador del juego
 function Marcador ({ marcador }) {
     return (
       <Contenedor>
-        <h2>Marcador:</h2>
-        <p>Partidas ganadas: {marcador.usuario}</p>
-        <p>Partidas ganadas por la computadora: {marcador.computadora}</p>
+        <h3>Marcador:</h3>
+        <Partidas>Partidas ganadas: {marcador.usuario}</Partidas>
+        <Partidas>Partidas ganadas por la computadora: {marcador.computadora}</Partidas>
       </Contenedor>
     );
   }

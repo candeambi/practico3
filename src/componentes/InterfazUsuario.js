@@ -147,12 +147,12 @@ function InterfazUsuario({actualizarMarcador, nombre}) {
 
     return (
       <Contenedor className="usuario-interfaz">
-        <h2>Elige tu opción:</h2>
+        <h3>Elige tu opción:</h3>
         <div className="opciones">
           {/* Aquí van los botones de elección del jugador */}
           <div>
             <p>Quien gane 3 rondas, gana la partida.</p>
-          <h2>¡A jugar!</h2>
+          <h3>¡A jugar!</h3>
           <Boton onClick={() => opcionClick('Piedra')} disabled={botonDesactivado}>
             <img src={piedraImg} alt="piedra" height='150' width='150'/>
             </Boton>
